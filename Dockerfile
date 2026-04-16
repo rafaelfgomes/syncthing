@@ -21,4 +21,4 @@ EXPOSE 8384 \
 
 ENTRYPOINT ["/entrypoint.sh"]
 
-CMD ["syncthing", "-home", "/var/syncthing", "-gui-address", "0.0.0.0:8384"]
+CMD ["syncthing", "serve", "--home", "/var/syncthing", "--gui-address", "0.0.0.0:8384"]
