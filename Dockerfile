@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine
 
 RUN apk add --no-cache syncthing su-exec ca-certificates tzdata
 
@@ -8,6 +8,14 @@ ENV PUID=1000 \
     STGUIADDRESS=0.0.0.0:8384
 
 RUN mkdir -p /var/syncthing /data
+
+RUN addgroup -g "$PGID" syncthing 2>/dev/null || true
+
+RUN adduser -D -H -u "$PUID" -G syncthing -s /bin/sh syncthing 2>/dev/null || true
+
+RUN chown -R syncthing:syncthing /var/syncthing
+
+RUN chown -R syncthing:syncthing /data
 
 COPY entrypoint.sh /entrypoint.sh
 
