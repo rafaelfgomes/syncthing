@@ -17,6 +17,8 @@ RUN chown -R syncthing:syncthing /var/syncthing
 
 RUN chown -R syncthing:syncthing /data
 
+RUN chmod -R 770 /data
+
 COPY entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh
